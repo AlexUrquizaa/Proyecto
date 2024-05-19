@@ -1,0 +1,13 @@
+*.html
+node_modules
+package.json
+package-lock.json
+
+// AUXILIARES
+
+faltante.txt
+nose.txt
+
+// PROGRAMA PRINCIPAL
+BDCoordenadas.js
+EncontrarPersonas.js

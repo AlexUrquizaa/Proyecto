@@ -1,0 +1,297 @@
+// Los diagramas ver cuales se hicieron en la primer entrega y que formatos tenian. Eso ponen en el informe al detallar diagramas de clase/secuencia.
+
+--------------------------------============================
+                                31 de Marzo del 2024
+--------------------------------============================
+
+.- Iniciamos un meet para elaborar los diagramas.
+.- Se crean los 3 primeros diagramas de secuencia.
+.- Se crea 1 diagrama de clases.
+.- AGREGAR ACA UNA FOTO DEL DIAGRAMA DE CLASES PARA MOSTRAR TODOS LOS METODOS/ATRIBUTOS/CLASES/HERENCIA QUE CONLLEVA EL PROGRAMA.
+
+.- Entregamos el tp de entrega inicial.
+
+--------------------------------============================
+                                6 de Abril del 2024
+--------------------------------============================
+
+.- Recibimos las siguientes correciones a destacar por parte del profesor:
+    1.- El metodo "Mostrar Errores" no muestra correctamente lo que deberia.
+    2.- Mejorar el nombre de las clases "Mapa global" y "Sistema Cajas"
+    3.- Metodo "Donar Cajas", tratar los nombres como en el 2.-.
+    4.- Modificar el sistema de "registro".
+
+
+--------------------------------============================
+                                15 de Abril del 2024
+--------------------------------============================
+
+.- Creamos un repositorio en GitHub para poder trabajar el codigo de forma grupal.
+.- Empezamos a hacer las modificaciones en el codigo a base de los comentarios del profesor. Ademas, empezamos a expandir su funcionamiento.
+
+
+--------------------------------============================
+                                22 de Abril del 2024
+--------------------------------============================
+
+.- Se establecen los siguientes cambios, aunque fueron temporales debido a futuros fallos e incongruencias.
+    1.- Se agrega el verificar registro. (if para verificar, un else para registrar -> Esto en los metodos "necesitoCajas" y "necesitoDonarCajas").
+
+    2.- Se elimina:
+        .- Los metodos "restarCajasDisponibles", "sumarCajasReservadas", "seguirSiendoDonador".
+        .- Los atributos "cantidadCajas", "donador", "localidad".
+
+    3.- Se agregan:
+        .- Los atributos "latitud/longitud" para gestionar sus coordenadas (ubicacion), "disponibleHasta" para determinar la fecha de actividad de mudanza/donador.
+
+    4.- Se agrega en la clase "Mapa Global" metodos de calculos de coordenadas, ya sea para generar las coordenadas de cada instancia Persona y calcular las distancias
+            entre distintos puntos de latitud/longitud dados. Para esto, establecemos "el centro de BS AS" como punto medio a la redonda, con un maximo de 50km
+            de radio donde se pueden generar las coordenadas de los usuarios.
+
+    5.- Cambiamos el nombre de la clase "Sistema Cajas" a "CajasParaMudanza".
+
+    6.- CajasParaMudanza tiene 5 metodos.
+
+--------------------------------============================
+                                29 de Abril del 2024
+--------------------------------============================
+
+.- Se intenta pasar el codigo de JavaScript a Java.
+.- Se discute si deberiamos aplicar herencia en la clase persona para tener dos clases hijas "PersonaMudanza" y "PersonaDonante".
+
+
+--------------------------------============================
+                                30 de Abril del 2024
+--------------------------------============================
+
+.- Se cambia aplica todo en una sola clase "Persona". Aunque en paralelo se trabajo en uno donde existe la herencia ya mencionada.
+
+.- Se cambia el atributo "disponibleHasta" a "fechaMudanza" y "fechaDonante". El cual sea en una clase o con herencia, se aplicarian igual.
+
+.- Se encuentran errores en el programa debido a la fechaMudanza y fechaDonante.
+
+.- Discutimos si la fecha deberia hacerse todo en una sola variable.
+
+.- Se discute si deberiamos solo mostrar una lista en "donarCajas" o deberiamos restarle cajas tambien al donante. Se llega a la conclusion de solo mostrar la lista
+        que es lo que pide exactamente el enunciado del problema.
+
+.- Se discute como establecer de mejor manera si una persona es donante o buscaCajas. Esto conlleva a eliminar el atributo "this._donante".
+    -> Las opciones discutidas son:
+        a.- Crear una variable por cada metodo (buscarCajas/DonarCajas) que sea let necesitoAhora = 'Buscadores' o let necesitoAhora = 'Donadores'.
+
+        b.- Crear dos metodos distintos para cada uno, un metodo que busque donadores y otro que busque quienes quieren cajas.
+
+    -> Discutimos otras opciones donde asumimos que:
+        a.- Si tiene cero cajas entonces siempre busca.
+        b.- Si tiene distinto de cero cajas entonces puede buscar cajas hasta completar lo necesitado.
+        c.- Si tiene distinto de cero cajas entonces puede donar cajas.
+
+
+--------------------------------============================
+                                1 de Mayo del 2024
+--------------------------------============================
+
+.- Iniciamos un meet para elaborar los diagramas y testear el programa.
+
+.- Falla el sistema en el lenguaje de Java. Procedemos a seguir utilizando el lenguaje JavaScript.
+
+.- IMPORTANTE: Optamos por la opcion de seguir el programa con herencia (como se menciono anteriormente, se habia creado uno en paralelo al principal).
+
+.- El programa presenta fallos en los metodos "DonarCajas" y "BuscarCajas" debido a que las listas dadas volvian vacias.
+    -> Luego de una hora testeando, descubrimos que se debia a un mal calculo de la distancia, se soluciona y el programa empieza a funcionar.
+
+.- El programa presenta fallos en algunos metodos.
+    -> Se debian aplicar como metodos estaticos, ya que clases como "Mapa global" y "CPM" se comportan como abstractas.
+    -> Aplicamos el concepto de abstraccion, herencia y estatica.
+
+.- Se efectuan los siguientes cambios:
+
+    1.- El persona eliminamos la mayorias de metodos y atributos.
+
+    2.- Agregamos en la clase Persona:
+        .- Atributo estatico "idCreadas". Por persona habra un atributo id que se asigna segun el numero actual del id estatico acumulado.
+        .- El metodo "crearCoordenadasPersona" que devuelve la latitud y longitud en forma de objeto y lo asigna a sus atributos de Persona.
+        .- El metodo "ubicacion" que devuelve la latitud y longitud en forma de objeto de una persona.
+
+    3.- Agregamos en la clase PersonaMudanza:
+        .- Los atributos cajasEnmano, fechaMudanza
+        .- El metodo "empezarMudanza" que lo pasa a "PersonaDonante" al mudarze.
+        .- El metodo "reservasCajas" que le acumula cajas a la persona y se las resta al donante.
+
+    4.- Agregamos en la clase PersonaMudanza:
+        .- Los atributos cajasParaDonar, donadorDesde (fecha).
+        .- El metodo "restarCajasReservadas" que le quita al donador las cajas que le dio a una mudanza.
+        .- El metodo "necesitoDonarCajas" que devuelve una lista de gente en mudanza que necesita cajas.
+        .- El metodo "necesitoCajas" que lo convierte en "PersonaMudanza" si necesita mudarze, aun si es donador.
+
+    5.- El programa empieza a funcionar y mostrar correctamente las personas cercanas. 
+        -> Si sos mudanza entonces muestra donantes.
+        -> Si sos donante entonces muestra mudanzas.
+
+    6.- Eliminamos en la clase CajasParaMudanza los metodos "reservarCajas" y "buscarQuierenCajas". Esto se delega a la clase "Mapa Global" y "Persona" con sus herencias.
+
+    7.- Eliminamos en la clase "MapaGlobal" el metodo "mostrarErrores".
+
+    8.- Agregamos los metodos ya mencionado de coordenadas y calculos.
+
+.- AGREGAR ACA UNA FOTO DEL DIAGRAMA DE CLASES PARA MOSTRAR TODOS LOS METODOS/ATRIBUTOS/CLASES/HERENCIA QUE CONLLEVA EL PROGRAMA.
+
+
+--------------------------------============================
+                                2 de Mayo del 2024
+--------------------------------============================
+
+.- Se entrega el TP de entrega intermedia.
+
+
+--------------------------------============================
+                                7 de Mayo del 2024
+--------------------------------============================
+
+.- Recibimos las siguientes correciones a destacar por parte del profesor:
+    1.- Nombres mas representativos para la clase "CajasParaMudanza" y "Mapa global".
+    2.- Realizar este informe.
+    3.- Dividir la clase CajasParaMudanza para aliviar la carga.
+    4.- El metodo empezarMudanza y los atributos latitud/longitud, pueden cambiarse?
+
+
+--------------------------------============================
+                                8 de Mayo del 2024
+--------------------------------============================
+
+.- Empezamos a organizar y implementar cambios en el programa.
+
+
+.- Se crean 4 carpetas llamadas geoLocalizacion, logia, sistemaMudanza y src.
+    -> Se dividen el archivo principal en 8 archivos segun su funcion.
+
+    1.- geoLocalizacion: Contiene todos los archivos relacionado a las localidades y su relacion con las personas.
+        i) BDCoordenadas.js:
+            .- Un objeto "localidades" con el siguiente formato:
+                -> Nombre localidad, latitud, longitud.
+
+        ii) LocalizadorPersonas.js:
+            .- Hereda de ControlCoordenadas (logica).
+            .- Localiza a las personas cerncas y las muestras.
+            .- Se agrega el metodo "separarSegunTipo" que filtra las personas proximas segun si son donadores/mudanza.
+
+    2.- logica: Contiene todo lo relacionado a elementos reutilizables y que se encargan de los calculos o el control de
+                de otros elementos.
+
+        i) ControlCoordenadas.js:
+            .- Importa "localidades" de geoLocalizacion - BDCoordenadas.js.
+
+            a)  Eliminamos los metodos relacionados a la generacion de coordenadas.
+            b) Mantenemos los metodos relacionados al calculo de distancia entre dos puntos distintos.
+            c) Modulamos estos metodos, agregando asi dos metodos extras:
+                    .- obtenerCoordenadasPorNombreLugar (maneja errores - si no existe la ubicacion envia el error de no ser encontrado en la lista).
+                    .- puntoMedioCoordenadas.
+            d) Ahora solo basta pasar el nombre de una ubicacion y no la latitud/longitud de cada persona. Solo el nombre de su localidad.
+
+        ii) ControlSistemaCajas.js:
+            .- Importa el "LocalizadorPersonas" de geoLocalizacion - LocalizadorPersonas.js.
+            .- Le delegamos los metodos de registro y verificar registro.
+            .- Agregamos el metodo "personasBuscandoDonando" que devuelve una lista de personas cercanas filtradas.
+
+        iii) BibliotecaGeneral.js:
+
+            a) Se crea la clase "MetodosGenerales" que tiene:
+                .- verificarObjetoVacio que devuelve si el objeto pasado como parametro esta vacio o no, si lo esta da un error.
+                .- filtrarListadoSegunCondicion que devuelve una lista filtrada segun la condicion enviada como parametro.
+
+            b) Se crea la clase "PersonaGenerica" que tiene:
+                .- Todos los elementos basicos que portaria una clase person en este contexto, ya sea nombre, apellido, id e idCreadas y nombreCompleto.
+
+    3.- sistemaMudanza:
+        i) RedMudanza.js:
+            .- Importa el "ControlSistemaCajas" de logica - ControlSistemaCajas.js
+
+            .- Se cambia el nombre de CajasParaMudanza a RICM "Red de intercambio de cajas para mudanza".
+            .- RICM hereda de ControlSistemaCajas.
+            .- RICM maneja solo dos metodos "donarCajas" y "buscaCajas".
+
+        ii) Personas.js:
+            .- Importa el "LocalizadorPersonas" de geoLocalizacion - LocalizadorPersonas.js
+            .- Importa el "RICM" de sistemaMudanza - RedMudanza.js
+            .- Importa el "PersonaGenerica" de logica - BibliotecaGeneral.js
+
+            .- Se mantienen las clases PersonaMudanza, PersonaDonante y Persona que hereda de PersonaGenerica;
+
+            a) Se agrega en Persona:
+                .- Los metodos "restarCajasReservadas" y "sumarCajasReservadas" y "necesitoCajas"
+                .- Los atributos "ubicacion" y "cajas".
+                    -> Ubicacion es solo el nombre del lugar y gracias a la logica, podemos obtener las coordenadas
+                        pasando solo el nombre del lugar.
+
+            b) Se agrega/Elimina en PersonaDonante:
+                .- Se eliminan la mayoria de atributos de PersonaDonante y se heredan de Persona.
+                .- Se mantiene el atributo "donadorDesde" (fecha de cuando empezo a ser donador).
+                .- Se agrega el metodo "personaTipo" que devuelve el string "donador".
+                .- Se mantienen los metodos "necesitoDonarCajas" y "necesitoCajas".
+
+            c) Se agrega/Elimina en PersonaMudanza:
+                .- Se elimina el constructor, ya que hereda los mismos atributos que persona y no adhiere ninguno nuevo.
+                .- Se agrega el metodo "personaTipo" que devuelve el string "mudanza".
+                .- Se mantienen los metodos "empezarMudanza" y "reservarCajas".
+
+    4.- src:
+        i) index.html para mostrar en consol.log los datos necesitados para su verificacion.
+        ii) main.js:
+            .- Importa el "PersonaMudanza/Donante" de sistemaMudanza - Personas.js.
+            .- Importa el "RICM" de sistemaMudanza - RedMudanza.js.
+
+            .- Se crear las instancias, 20 de donantes y 20 de mudanza, tambien se registran estos 20 en el RICM.
+            .- Se llaman a 2 de estas instancias para su testeo.
+
+
+--------------------------------============================
+                                16 de Mayo del 2024
+--------------------------------============================
+
+1.- Cambio en los nombre de los archivos y clases:
+    .- Localidades a localidadesCoordenadas.
+    .- LocalizadorPersonas a EncontrarPersonas.
+    .- ControlSistemaCajas a ControlRedMudanza.
+    .- ControlCoordenadas a GestorUbicaciones.
+    .- Metodos generales a MetodosAuxiliares.
+    .- RICM a RedMudanza.
+
+2.- Se elimina la clase "PersonaGenerica" y se acumula todos sus comportamientos en la clase Persona directamente.
+
+3.- Elimino el atributo ID y el ID estatico y agrego el DNI para una identificacion unica por usuario.
+
+
+--------------------------------============================
+                                19 de Mayo del 2024         --- ULTIMAS MODIFICACIONES
+--------------------------------============================
+
+
+1) Aplicar el method factory:
+    Agregue la clase FabricaPersona.
+    Tiene el metodo tipoPersona(nombre, apellido, dni, ubicacion, cajas = 0, tipo, fecha = '')
+
+2) Elimine el metodo return tipoPersona.
+    2.1) Agregue en la clase Persona el atributo "tipo":
+        En PersonaMudanza se asigna como "Mudanza".
+        En PersonaDonante se asgina como "Donador".
+
+3) Se modificaron los metodos "necesitoCajas" y "necesitoDonarCajas".
+        > Tienen errores si la listas encontradas estan vacias. Segun sea el caso.
+
+    3.1) En ambas clases, ahora si una persona se encuentra registrada y quiero cambiar su tipo, solamente
+        la reemplazo en la lista por el nuevo tipo de instancia con mismos datos.
+
+    3.2) Se elimina el metodo "empezarMudanza" y se reemplaza por "necesitoDonarCajas".
+            En la clase PersonaMudanza se aplica polimorfismo parametrico.
+            
+    3.3) Ahora PMudanza y PDonante tienen necesitoCajas y necesitoDonarCajas polimorficas. En clase
+        Persona se mantiene una interfaz solamente.
+
+4) En ControlRedMudanza se cambio el nombre del metodo separarPorRol a elegirCercanosQueSatisfacen.
+        > Este afecta a buscarCajas/DonarCajas.
+
+5) Se agrega el metodo verificarListaVacia en MetodosAuxiliares.
+
+6) Se agrega el metodo modificarRegistro a ControlRedMudanza.
+
+7) Se modifico el metodo separarSegunTipo por devolverRolContrario.
