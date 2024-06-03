@@ -11,7 +11,7 @@ class Persona {
     constructor(nombre, apellido, dni = 0, ubicacion, cajas = 0, tipo = ''){
         this._nombre = nombre;
         this._apellido = apellido;
-        this._dni = dni;
+        thisf._dni = dni;
         this._ubicacion = ubicacion;
         this._cajas = cajas;
         this._tipo = tipo;
@@ -74,10 +74,10 @@ export class PersonaDonante extends Persona
         mudanza.necesitoCajas(cajasNecesitadas, fechaDeMudanza, ubicacion);
     }
 
-    necesitoDonarCajas(cantidadParadonar, ubicacion)
+    necesitoDonarCajas(cantidadParaDonar, ubicacion)
     {
         if(!RedMudanza.verificarRegistro(this)) return
-        let listadoNecesitanCajas = RedMudanza.donarCajas(cantidadParadonar, ubicacion);
+        let listadoNecesitanCajas = RedMudanza.donarCajas(cantidadParaDonar, ubicacion);
         EncontrarPersonas.mostrarPersonasProximas(listadoNecesitanCajas, this);
     }
 }
@@ -92,17 +92,17 @@ export class PersonaMudanza extends Persona
     necesitoCajas(cajasNecesitadas, fechaDeMudanza, ubicacion)
     {
         if(!RedMudanza.verificarRegistro(this)) return
-        let listadoDonadores = RedMudanza.buscarCajas(cajasNecesitadas, fechaDeMudanza,  ubicacion);        
+        let listadoDonadores = RedMudanza.buscarCajas(cajasNecesitadas, fechaDeMudanza,  ubicacion);
         EncontrarPersonas.mostrarPersonasProximas(listadoDonadores, this);
         
         this.reservarCajas(listadoDonadores, cajasNecesitadas);
         this.necesitoDonarCajas(fechaDeMudanza, cajasNecesitadas, ubicacion);
     }
 
-    necesitoDonarCajas(fecha, cantidadParadonar, ubicacion){
+    necesitoDonarCajas(fecha, cantidadParaDonar, ubicacion){
         const donador = FabricaPersona.tipoPersona(PersonaDonante, this.nombre, this._apellido, this.dni, ubicacion, this.cajas, this.tipo, fecha);
         RedMudanza.modificarRegistro(donador);
-        donador.necesitoDonarCajas(cantidadParadonar, ubicacion);
+        donador.necesitoDonarCajas(cantidadParaDonar, ubicacion);
     }
 
     reservarCajas(listadoDonadores, cajasRequeridas){

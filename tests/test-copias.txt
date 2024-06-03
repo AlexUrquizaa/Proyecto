@@ -1,0 +1,13 @@
+// describe('Crear persona', () => {
+
+//           //      -----> Ya lo verifico en "verificar que este registrado".
+//   // it('La persona se registro correctamente', () => {
+//   //   expect(RedMudanza.listaPersonaRegistradas).contain(persona1)
+//   // });
+
+//   it('Verificar que este registrado', () => {
+//     expect(RedMudanza.listaPersonaRegistradas).contain(persona1)
+//     expect(RedMudanza.listaPersonaRegistradas).contain(persona1)
+//   });
+
+// });
