@@ -1,18 +1,3 @@
-1.- Cambiar nombres, mas intuitivos.	LISTO
-2.- Test.		- PASARLOS A JS
+2.- Test.		    - PASARLOS A JS
 3.- Diagramas.		- CLASES LISTO - FALTA SECUENCIALES.
 4.- Informe.		- MICHI AL MANDO.
-
-/* 
-    FALTAN:
-        .- Tests.
-        .- Posible interfaz.
-        .- Tal vez separar en una carpeta aparte una "base de datos", ya sea de personas registradas o localidades.
-*/
-
-
-
-// cambios
-
--> Nota: Ver si poner el tipo solo en las clases hijas. Ya que se cambia de instancia esto.
--> Modificar el reservarCaja?
